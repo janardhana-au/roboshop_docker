@@ -26,6 +26,22 @@ services:
     depends_on:
     - redis
     - catalogue
-  
+  mysql:
+    image: mysql:v1
+    container_name: mysql
+  shipping:
+    image: shipping:v1
+    container _name: shipping
+    depends_on:
+    - cart
+    - mysql
+  rabbitmq:
+    image: rabbitmq:3
+    container_name: rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: roboshop
+      RABBITMQ_DEFAULT_PASS: roboshop123
+
+    
 
   
