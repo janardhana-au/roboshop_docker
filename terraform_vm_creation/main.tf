@@ -70,7 +70,7 @@ resource "aws_security_group_rule" "ansible_sg_rule" {
 resource "aws_instance" "ansible_servers" {
   # count = length(var.ansible_instances)
   ami           = local.ami_id
-  instance_type = "t2.micro"
+  instance_type = "t3.medium"
   vpc_security_group_ids = [aws_security_group.main.id]
   subnet_id = aws_subnet.public_subnet_ids.id  
   # need more for terraform
