@@ -2,10 +2,14 @@ networks:
   default:
     name: roboshop-net
     #external: true
+volumes:
+  mysql: # docker create volume mysql:
 services:
   mongodb:
     image: janardhanaau/mongodb:v1
     container_name: mongodb
+    volumes:
+      - mongdb: volumes:/data/db
   catalogue:
     image: janardhanaau/catalogue:v1
     container_name: catalogue
@@ -17,6 +21,8 @@ services:
   redis:
     image: redis:7
     container_name: redis
+    volumes:
+    - redis:/data
   user:
     image: janardhanaau/user:v1
     container_name: user
@@ -41,6 +47,8 @@ services:
     container_name: mysql
     environment:
       MYSQL_ROOT_PASSWORD: RoboShop@1
+    volumes:
+    - mysql:/var/lib/mysql
   shipping:
     image: janardhanaau/shipping:v1
     container_name: shipping
@@ -56,6 +64,8 @@ services:
     environment:
       RABBITMQ_DEFAULT_USER: roboshop
       RABBITMQ_DEFAULT_PASS: roboshop123
+    volumes:
+    - rabbitmq:/var/lib/rabbitmq
   payment:
     image: janardhanaau/payment:v1
     container_name: payment

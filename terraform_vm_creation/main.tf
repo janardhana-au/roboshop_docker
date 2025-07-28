@@ -70,15 +70,15 @@ resource "aws_security_group_rule" "ansible_sg_rule" {
 resource "aws_instance" "ansible_servers" {
   # count = length(var.ansible_instances)
   ami           = local.ami_id
-  instance_type = "t3.medium"
+  instance_type = "t2.micro"
   vpc_security_group_ids = [aws_security_group.main.id]
   subnet_id = aws_subnet.public_subnet_ids.id  
   # need more for terraform
-  root_block_device {
-    volume_size = 50
-    volume_type = "gp3" # or "gp2", depending on your preference
-  }
-  user_data = file("userdata.sh")
+  # root_block_device {
+  #   volume_size = 50
+  #   volume_type = "gp3" # or "gp2", depending on your preference
+  # }
+  # user_data = file("userdata.sh")
   #iam_instance_profile = "TerraformAdmin"
   tags = {
      Name = "${var.project}-${var.environment}-docker"
