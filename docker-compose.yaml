@@ -3,7 +3,11 @@ networks:
     name: roboshop-net
     #external: true
 volumes:
-  mysql: # docker create volume mysql:
+  mysql: # docker create volume mysql
+  mongodb:
+  redis:
+  rabbitmq:
+
 services:
   mongodb:
     image: janardhanaau/mongodb:v1
