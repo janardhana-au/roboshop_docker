@@ -13,7 +13,7 @@ services:
     image: janardhanaau/mongodb:v1
     container_name: mongodb
     volumes:
-      - mongdb: volumes:/data/db
+      - mongodb: volumes:/data/db
   catalogue:
     image: janardhanaau/catalogue:v1
     container_name: catalogue
